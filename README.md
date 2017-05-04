@@ -1,2 +1,1 @@
-# Create-Your-Dream-Dog
-App to create your dream dog
+Create Your Dream Dog is an app that allows you to create your dream dog. To do this you need to create an account and login. Logged in users can also like, dislike, and comment on other user's dogs. Only the user who created a dog can update or delete that dog, as well as update or delete their own profile. 
