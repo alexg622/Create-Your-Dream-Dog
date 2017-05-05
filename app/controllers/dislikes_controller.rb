@@ -8,13 +8,11 @@ class DislikesController < ApplicationController
 			if @dislike.save
 				redirect_to dog_path(@dog) 
 			else 
-				@dogs1 = Dog.all
-				@dogs = @dogs1.sort_by {|dog| dog.likes.length}.reverse 
+				@comments = @dog.comments 
 				render template: "dogs/show"
 			end 
 		else 
-				@dogs1 = Dog.all
-				@dogs = @dogs1.sort_by {|dog| dog.likes.length}.reverse 
+				@comments = @dog.comments 
 				@errors = "You can only dislike a dog once"
 				render template: "dogs/show"
 		end 

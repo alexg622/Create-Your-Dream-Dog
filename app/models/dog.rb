@@ -1,6 +1,7 @@
 class Dog < ApplicationRecord
 	belongs_to :owner 
 	has_many :likes 
+	has_many :comments
 	has_many :dislikes 
 	validates :name, presence: true 
 

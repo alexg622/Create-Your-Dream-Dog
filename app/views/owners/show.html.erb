@@ -4,11 +4,11 @@
 	<% if @dogs.any? %>
 		<% @dogs.each do |dog| %>
 			<li><%= link_to "#{dog.name}", dog %></li>
+</ul></div> 
 		<% end %>
 	<% else %>
 		<h1>You don't have any dogs <%= link_to "go make some!", new_dog_path %></h1>
 	<% end %>
-</ul></div> 
 <div>
 	<%= link_to "Edit Profile", edit_owner_path(@owner) %>
 	<%= link_to "Delete Profile", @owner, method: :delete %>
