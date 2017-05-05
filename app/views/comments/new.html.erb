@@ -1,0 +1,11 @@
+<div>
+	<h1>Leave a comment for <%= @dog.name %></h1>
+</div>
+<div>
+	<%= form_for @comment, url: dog_comments_path(@dog) do |f| %>
+		<%= f.text_area :description, size: "60x10" %>
+		<%= f.hidden_field :owner_id, value: current_user.id %>
+		<%= f.hidden_field :dog_id, value: @dog.id %>
+		<%= f.submit "Submit Comment" %>
+	<% end %>
+</div>

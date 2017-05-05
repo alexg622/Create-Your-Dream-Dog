@@ -8,15 +8,12 @@ class LikesController < ApplicationController
 			if @like.save 
 				redirect_to dog_path(@dog) 
 			else 
-				@dogs1 = Dog.all
-				@dogs = @dogs1.sort_by {|dog| dog.likes.length}.reverse
+				@comments = @dog.comments 
 				render template: "dogs/show"
 			end 
 		else 
 			@errors = "You can only like a dog once"
-			@dogs1 = Dog.all
-			@dogs = @dogs1.sort_by {|dog| dog.likes.length}.reverse
-
+			@comments = @dog.comments 
 			render template: "dogs/show"
 		end
 	end 
