@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	resources :sessions
 	resources :dogs
 	resources :owners
+	delete 'dogs/:dog_id/comments/:id' => 'comments#destroy'
 	get 'dogs/:dog_id/comments/:id' => 'comments#show', as: :dog_comment
 	get 'dogs/:id/comments' => 'comments#new', as: :new_dog_comments
 	post 'dogs/:id/comments' => 'comments#create', as: :dog_comments
