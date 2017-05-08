@@ -21,7 +21,14 @@ class CommentsController < ApplicationController
 		@dog = @comment.dog 
 		@owner = @comment.owner 
 	end 
-	
+
+	def destroy
+		@comment = Comment.find(params[:id])
+		@dog = @comment.dog 
+		@comment.delete
+		redirect_to @dog
+	end 
+
 	private
 
 	def comments_params 

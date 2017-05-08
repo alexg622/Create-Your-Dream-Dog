@@ -33,14 +33,17 @@
 		<h1>Comments</h1>
 		<% @comments.each do |comment| %>	
 		<ul>
-			<li><%=link_to comment.owner.name, dog_comment_path(@dog, comment)%> left a comment for <%= @dog.name %></li>
+			<li><%= comment.description %></li>
+			<% if current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
+				<%= link_to "Delete Comment", dog_comment_path(@dog, comment), method: :delete %>
+			<% end %>
 		</ul>
 		<% end %>
 	<% end %>
 </div>
 <div>
 	<% if current_user %>
-		<%= link_to "Comment", new_dog_comments_path(@dog) %>
+		<%= link_to "Make a Comment", new_dog_comments_path(@dog) %>
 	<% end %>
 </div>
 <div>
