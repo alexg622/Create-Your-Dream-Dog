@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 		if @comment.save
 			redirect_to @dog 
 		else 
-			@errors
+			@errors = @comment.errors.full_messages
 			render 'new'
 		end 
 	end 
