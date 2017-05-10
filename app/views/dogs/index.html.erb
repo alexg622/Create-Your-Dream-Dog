@@ -1,25 +1,32 @@
-<h1>Look at all these perfect dogs!</h1>
+<div class="center">
+	<h3>Look at all these perfect dogs!</h3>
+</div>
 <div>
 	<% if @errors %>
 		<%= @errors %>	
 	<% end %>
 </div>
 <div>
-	<ul>
+	<ul class="center dogs">
 		<% if @dogs.any? %>
 			<% @dogs.each do |dog| %>
-				<li><%= link_to "#{dog.name}", dog %> has <%= dog.likes.length %> 
-					<% if dog.likes.length == 1 %>
-						like and has 
-					<% else %>
-						likes and has
-					<% end %>
-				 		<%= dog.dislikes.length %> 
-					<% if dog.dislikes.length == 1 %>
-						dislike
-					<% else %>
-						dislikes
-					<% end %></li>
+				<div class="row">
+					<li><h4><%= link_to "#{dog.name}", dog %></h4>  
+					<div class="row">
+						<%= dog.likes.length %>
+						<% if dog.likes.length == 1 %>
+							like 
+						<% else %>
+							likes
+						<% end %>
+
+					 	<h5> & </h5><%= dog.dislikes.length %> 
+						<% if dog.dislikes.length == 1 %>
+							dislike
+						<% else %>
+							dislikes
+						<% end %></div></li>
+				</div>
 			<% end %>
 		<% else %>
 			<h1>Looks like there aren't any dogs yet. Go make one <%= link_to "create a dog", dogs_path %></h1>
