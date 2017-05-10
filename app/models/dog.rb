@@ -3,7 +3,7 @@ class Dog < ApplicationRecord
 	has_many :likes 
 	has_many :comments
 	has_many :dislikes 
-	validates :name, presence: true 
+	validates :name, :age, :eyes, :color, :weight, :height, :personality, :sex, presence: true 
 
 	def if_owner_liked(user)
 		if self.likes.any?

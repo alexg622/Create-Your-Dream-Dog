@@ -38,8 +38,10 @@
 				<% @comments.each do |comment| %>	
 				<ul>
 					<li><i class="tiny material-icons yellow-text">grade</i><%= comment.description %><i class="tiny material-icons yellow-text">grade</i></li>
-					<% if current_user && current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
-						<a rel="nofollow" data-method="delete" href="/dogs/<%= @dog.id %>/comments/<%= comment.id %>"> <i class="material-icons">delete</i></a>
+					<% if current_user %>
+						<% if current_user.id == @dog.owner.id || current_user.id == comment.owner.id %>
+							<a rel="nofollow" data-method="delete" href="/dogs/<%= @dog.id %>/comments/<%= comment.id %>"> <i class="material-icons">delete</i></a>
+						<% end %>
 					<% end %>
 				</ul>
 				<% end %>
