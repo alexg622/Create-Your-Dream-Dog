@@ -1,18 +1,18 @@
-<h1>Hi <%= @owner.name %>! </h1>
+<h1 class="center">Hi <%= @owner.name %>! </h1>
 <% if @dogs.any? %>
 	<div>
-		<h1>Here are your perfect dogs!</h1>
-		<ul>
+		<h1 class="center">Here are your perfect dogs!</h1>
+		<ul class="center">
 			<% @dogs.each do |dog| %>
 				<li><%= link_to "#{dog.name}", dog %></li>
+			<% end %>
 		</ul>
 	</div> 
-		<% end %>
 <% else %>
 	<h1>You don't have any dogs <%= link_to "go make some!", new_dog_path %></h1>
 <% end %>
 <div>
-	<ul>
+	<ul class="center">
 		<li>Edit Profile<a href="/owners/<%= @owner.id %>/edit"><i class="material-icons">mode_edit</i></a></li>
 		<li>Delete Profile<a rel="nofollow" data-method="delete" href="/owners/<%= @owner.id %>"><i class="material-icons">delete</i></a></li>
 	</ul>

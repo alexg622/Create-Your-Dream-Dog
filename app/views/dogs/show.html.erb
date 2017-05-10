@@ -1,54 +1,61 @@
-<p><h1>This is <%= @dog.name %> and this dog's owner is <%= @dog.owner.name %></h1>
+<p><h1 class="center">This is <%= @dog.name %> and this dog's owner is <%= @dog.owner.name %></h1>
 <div>
 	<% if @errors %>
-		<%= @errors %>	
+		<span class="red-text text-darken-4"><%= @errors %></span>	
 	<% end %>
 </div>
-<div>
-	<ul style="list-style-type: none;">
-		<li>Name: <%= @dog.name %></li>
-		<li>Age: <%= @dog.age %></li>
-		<li>Niceness: <%= @dog.personality %></li>
-		<li>Fur Color: <%= @dog.color %></li>
-		<li>Weight: <%= @dog.weight %></li>
-		<li>Height: <%= @dog.height %></li>
-	</ul>
-</div></p>
-<div>
-	<% if current_user %>
-		<ul>
-			<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/likes"><i class="small material-icons">thumb_up</i></a>
-			<% if @dog.likes.any? %>
-				<%= @dog.likes.length %>
+<div class="row center">
+	<div>
+		<div>
+			<ul style="list-style-type: none;">
+				<li>Name: <%= @dog.name %></li>
+				<li>Age: <%= @dog.age %></li>
+				<li>Niceness: <%= @dog.personality %></li>
+				<li>Fur Color: <%= @dog.color %></li>
+				<li>Weight: <%= @dog.weight %></li>
+				<li>Height: <%= @dog.height %></li>
+			</ul>
+		</div></p>
+		<div>
+			<% if current_user %>
+				<ul>
+					<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/likes"><i class="small material-icons">thumb_up</i></a>
+					<% if @dog.likes.any? %>
+						<%= @dog.likes.length %>
+					<% end %>
+					<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/dislikes"><i class="small material-icons">thumb_down</i></a>
+					<% if @dog.dislikes.any? %>
+						<%= @dog.dislikes.length %>	
+					<% end %>
+				</ul>
 			<% end %>
-			<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/dislikes"><i class="small material-icons">thumb_down</i></a>
-			<% if @dog.dislikes.any? %>
-				<%= @dog.dislikes.length %>	
+		</div>
+	</div>
+	<div>
+		<div>
+			<% if @comments.any? %>	
+				<h1>Comments</h1>
+				<% @comments.each do |comment| %>	
+				<ul>
+					<li><i class="tiny material-icons yellow-text">grade</i><%= comment.description %><i class="tiny material-icons yellow-text">grade</i></li>
+					<% if current_user && current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
+						<a rel="nofollow" data-method="delete" href="/dogs/<%= @dog.id %>/comments/<%= comment.id %>"> <i class="material-icons">delete</i></a>
+					<% end %>
+				</ul>
+				<% end %>
 			<% end %>
-		</ul>
-	<% end %>
-</div>
-<div>
-	<% if @comments.any? %>	
-		<h1>Comments</h1>
-		<% @comments.each do |comment| %>	
-		<ul>
-			<li><%= comment.description %></li>
-			<% if current_user && current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
-				<%= link_to "Delete Comment", dog_comment_path(@dog, comment), method: :delete %>
+		</div>
+		<div>
+			<% if current_user %>
+				<%= link_to "Make a Comment", new_dog_comments_path(@dog) %>
 			<% end %>
-		</ul>
-		<% end %>
-	<% end %>
-</div>
-<div>
-	<% if current_user %>
-		<%= link_to "Make a Comment", new_dog_comments_path(@dog) %>
-	<% end %>
-</div>
-<div>
-	<% if current_user && @dog.owner.id == current_user.id %>
-		<%= link_to "Edit", edit_dog_path(@dog) %>
-		<%= link_to	"Delete", dog_path(@dog), method: :delete %>	
-	<% end %>
+		</div>
+		<br>
+		<div>
+			<% if current_user && @dog.owner.id == current_user.id %>
+				<%= link_to "Edit #{@dog.name}", edit_dog_path(@dog) %> |
+				<%= link_to	"Delete #{@dog.name}", dog_path(@dog), method: :delete %>	
+			<% end %>
+		</div>
+	</div>
 </div>
