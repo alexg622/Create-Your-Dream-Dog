@@ -4,7 +4,7 @@
 		<h1 class="center">Here are your perfect dogs!</h1>
 		<ul class="center">
 			<% @dogs.each do |dog| %>
-				<li><%= link_to "#{dog.name}", dog %></li>
+				<h4><li><%= link_to "#{dog.name}", dog %></li></h4>
 			<% end %>
 		</ul>
 	</div> 

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 				redirect_to @owner 
 			end 
 		else 
-			@error = "Please put in your usernmae and password"
+			@error = "Please put in your username and password"
 			render 'new'
 		end 
 	end 
