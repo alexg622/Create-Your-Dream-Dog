@@ -17,11 +17,11 @@
 <div>
 	<% if current_user %>
 		<ul>
-			<%= button_to "Like", dog_likes_path(@dog), method: :post %> 
+			<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/likes"><i class="small material-icons">thumb_up</i></a>
 			<% if @dog.likes.any? %>
 				<%= @dog.likes.length %>
 			<% end %>
-			<%=button_to "Dislike", dog_dislikes_path(@dog), method: :post %>
+			<a rel="nofollow" data-method="post" href="/dogs/<%= @dog.id %>/dislikes"><i class="small material-icons">thumb_down</i></a>
 			<% if @dog.dislikes.any? %>
 				<%= @dog.dislikes.length %>	
 			<% end %>
@@ -34,7 +34,7 @@
 		<% @comments.each do |comment| %>	
 		<ul>
 			<li><%= comment.description %></li>
-			<% if current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
+			<% if current_user && current_user.id == @dog.owner.id || @owner.id == comment.owner.id %>
 				<%= link_to "Delete Comment", dog_comment_path(@dog, comment), method: :delete %>
 			<% end %>
 		</ul>
